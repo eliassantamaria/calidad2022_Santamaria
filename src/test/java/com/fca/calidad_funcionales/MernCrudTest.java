@@ -8,11 +8,15 @@ import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.time.Duration;
 
-public class GoogleTest {
+
+public class MernCrudTest {
 
 	private WebDriver driver;
 	  private String baseUrl;
@@ -21,7 +25,8 @@ public class GoogleTest {
 	  JavascriptExecutor js;
 	  @Before
 	  public void setUp() throws Exception {
-	    System.setProperty("webdriver.chrome.driver", "");
+		WebDriverManager.chromedriver().setup();
+	    //System.setProperty("webdriver.chrome.driver", "");
 	    driver = new ChromeDriver();
 	    baseUrl = "https://www.google.com/";
 	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
@@ -29,13 +34,26 @@ public class GoogleTest {
 	  }
 
 	  @Test
-	  public void testUntitledTestCase() throws Exception {
-	    driver.get("https://www.google.com/search?q=yucatan+i6&rlz=1C1VDKB_esMX1027MX1027&oq=yuc&aqs=chrome.0.69i59j69i57j46i67i131i433j46i67j46i131i175i199i433i512j69i60l3.2768j0j7&sourceid=chrome&ie=UTF-8");
-	    driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div/div/div/a/h3")).click();
-	    driver.get("https://siies.yucatan.gob.mx/yucatani6/");
-	    assertEquals("Yucatáni6", driver.getTitle());
-	  }
-
+	  public void testMern() throws Exception {
+	    driver.get("https://mern-crud.herokuapp.com/");
+	    pause(3000);
+	    driver.findElement(By.xpath("//div[@id='root']/div/div[2]/button")).click();
+	    pause(3000);
+	    driver.findElement(By.name("name")).click();
+	    driver.findElement(By.name("name")).clear();
+	    driver.findElement(By.name("name")).sendKeys("Elias test");
+	    driver.findElement(By.name("email")).clear();
+	    driver.findElement(By.name("email")).sendKeys("elias@prueba.com");
+	    driver.findElement(By.name("age")).clear();
+	    driver.findElement(By.name("age")).sendKeys("22");
+	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")).click();
+	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/following::div[1]")).click();
+	    pause(3000);
+	    String mensaje = driver.findElement(By.xpath(" /html/body/div[2]/div/div[2]/form/div[4]/div/p")).getText();
+	    assertThat(mensaje,is("Successfully added!"));
+	   
+	 }
+	   
 	  @After
 	  public void tearDown() throws Exception {
 	    driver.quit();
@@ -77,4 +95,13 @@ public class GoogleTest {
 	      acceptNextAlert = true;
 	    }
 	  }
+	  
+	  private void pause(long mils) {
+		  try {
+			  Thread.sleep(mils);
+		  }catch(Exception e) {
+			  e.printStackTrace();
+		  }
+	  }
+	
 }

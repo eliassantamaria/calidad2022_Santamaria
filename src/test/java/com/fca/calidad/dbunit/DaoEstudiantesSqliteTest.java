@@ -183,8 +183,9 @@ public class DaoEstudiantesSqliteTest extends TestCase{
 				"estudiante",
 				"SELECT * FROM estudiante where id = 0");
 			assertThat(alumno.getApellido(), is(actualTable.getValue(0, "apellido")));
-			alumno.getCarrera()
-			alumno.getNombre()
+			alumno.getCarrera();
+			alumno.getNombre();
+		
 		}
 		
 	}

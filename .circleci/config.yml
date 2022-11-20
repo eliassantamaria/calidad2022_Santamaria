@@ -40,7 +40,7 @@ jobs:
           command: mvn test -Dtest="FakeAlumnoDAOTest"
           
        #Se realiza el test del CRUD de Mern.    
-       - run:
+      - run:
           name: TestCrudMern
           command: mvn test -Dtest="MernCrudTest"
 

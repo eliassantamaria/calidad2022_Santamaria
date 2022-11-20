@@ -1,5 +1,6 @@
 package com.fca.calidad.dbunit;
 
+//Importación de elementos para conexión con SQLlite
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,13 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.fca.calidad.curdMOCK.Estudiante;
-import com.fca.calidad.curdMOCK.IDAOEstudiante;
-
 public class DAOEstudianteSQLlite implements IDAOEstudiante{
-
+	
 	private static final String DRIVER_NAME = "org.sqlite.JDBC";
-	private static final String DB_URL = "jdbc:sqlite:C:PONER AQUI SU RUTA\\Alumnos.db";
+	private static final String DB_URL = "jdbc:sqlite:C:\\Users\\fca\\Documents\\Calidad2022_Sansores\\Calidad2022_Sansores\\src\\resources\\Alumnos.db";
 	private static final String ID= "";
 	private static final String PASS= "";
 	
@@ -39,6 +37,8 @@ public class DAOEstudianteSQLlite implements IDAOEstudiante{
 				}
 			}
 		}
+	
+	
 	@Override
 	public int createEstudiante(Estudiante e) {
 
@@ -201,5 +201,5 @@ public class DAOEstudianteSQLlite implements IDAOEstudiante{
 		return retrieved;	
 	
 	}
-	
+
 }

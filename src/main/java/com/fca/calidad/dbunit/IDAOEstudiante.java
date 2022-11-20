@@ -1,4 +1,4 @@
-package com.fca.calidad.curdMOCK;
+package com.fca.calidad.dbunit;
 
 public interface IDAOEstudiante {
 	

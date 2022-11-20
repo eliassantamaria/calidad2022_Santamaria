@@ -8,6 +8,9 @@ import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.time.Duration;
@@ -21,7 +24,8 @@ public class GoogleTest {
 	  JavascriptExecutor js;
 	  @Before
 	  public void setUp() throws Exception {
-	    System.setProperty("webdriver.chrome.driver", "");
+	    //System.setProperty("webdriver.chrome.driver", "");
+	    WebDriverManager.chromedriver().setup();
 	    driver = new ChromeDriver();
 	    baseUrl = "https://www.google.com/";
 	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));

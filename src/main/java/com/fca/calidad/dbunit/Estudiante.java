@@ -1,7 +1,7 @@
-package com.fca.calidad.curdMOCK;
+package com.fca.calidad.dbunit;
 
 public class Estudiante {
-	
+
 	private int id = 0;
 	private String nombre = "";
 	private String apellido = "";
@@ -66,5 +66,4 @@ public class Estudiante {
 		this.carrera = carrera;
 	}
 	
-
 }

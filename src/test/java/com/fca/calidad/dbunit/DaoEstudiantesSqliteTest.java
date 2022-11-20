@@ -17,29 +17,32 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fca.calidad.curdMOCK.Estudiante;
+
+import com.fca.calidad.dbunit.DAOEstudianteSQLlite;
+import com.fca.calidad.dbunit.Estudiante;
 
 import static org.hamcrest.MatcherAssert.assertThat; 
 import static org.hamcrest.Matchers.*;
-import com.fca.calidad.curdMOCK.
+//import com.anahuac.calidad.curdMOCK.*;
+
 
 
 import junit.framework.TestCase;
+
 
 public class DaoEstudiantesSqliteTest extends TestCase{
 
 	public IDatabaseConnection connection;
 	public DAOEstudianteSQLlite daoSQLite;
 	
-	public DaoEstudiantesSqliteTest (String name)
-	{
+	public DaoEstudiantesSqliteTest (String name) {
 		super(name);
 	}
 
 	protected IDataSet getDataSet() throws Exception {
 		// TODO Auto-generated method stub
 		return new FlatXmlDataSetBuilder().build
-				(new File("src/resources/initDB.xml"));
+				(new File("C:\\Users\\geova\\OneDrive\\Escritorio\\Escuela\\Calidad_Santamaria\\calidad2022_Santamaria\\src\\resources\\initDB.xml"));
 	}
 	
 	
@@ -50,7 +53,7 @@ public class DaoEstudiantesSqliteTest extends TestCase{
 		Connection jdbcConnection;
 		
 		jdbcConnection = DriverManager.getConnection
-				("jdbc:sqlite:/Users/patriciaortegon/Documents/Personales/Mayab/ENERO-MAYO-2022/calidad/parcial2/Alan/CAlidad2022/Alumnos.db");
+				("jdbc:sqlite:C:\\Users\\geova\\OneDrive\\Escritorio\\Escuela\\Calidad_Santamaria\\calidad2022_Santamaria\\src\\resources\\Alumnos.db");
 		
 		connection = new DatabaseConnection(jdbcConnection);
 		
@@ -93,12 +96,14 @@ public class DaoEstudiantesSqliteTest extends TestCase{
 		return connection;
 	}
 
-	
+/*
 	@Test
 	public void testCrear() {
-		Estudiante alumno = new Estudiante ("nombrePruebaCrear","appellidoCrear","email" ,"carrera");
+		//Estudiante alumno = new Estudiante ("nombrePruebaCrear","appellidoCrear","email" ,"carrera");
+		Estudiante alumno = new Estudiante("nombrePrueba","apellidoPrueba","email@Prueba","carreraPrueba");
 		
 		int id = daoSQLite.createEstudiante(alumno);
+		
 		alumno.setId(id);
 		
 		//verify
@@ -172,21 +177,69 @@ public class DaoEstudiantesSqliteTest extends TestCase{
 		}
 	}
 	
+
+	//@Test
+	//public void testFindEstudiante() {
+	//	Estudiante alumno;
+		//alumno = daoSQLite.findEstudiante(0);
+		
+		
+		//try {
+		//	ITable actualTable = getConnection().createQueryTable(
+			//	"estudiante",
+			//	"SELECT * FROM estudiante where id = 0");
+			//assertThat(alumno.getApellido(), is(actualTable.getValue(0, "apellido")));
+			//alumno.getCarrera();
+		//	alumno.getNombre();
+		
+		//}
+		
+//	}
+	
+	*
+	*/
 	@Test
-	public void testFindEstudiante() {
-		Estudiante alumno;
-		alumno = daoSQLite.findEstudiante(0);
+	public void testCrearCompararTabla4() {
+		//<Estudiante id="3" nombre="nombre1" apellido="apellido1" email="email" carrera = "carrera"/>
+		Estudiante alumno = new Estudiante ("nombre1","apellido1","email" ,"carrera");
+		
+		int id = daoSQLite.createEstudiante(alumno);
+		alumno.setId(id);
 		
 		
 		try {
 			ITable actualTable = getConnection().createQueryTable(
-				"estudiante",
-				"SELECT * FROM estudiante where id = 0");
-			assertThat(alumno.getApellido(), is(actualTable.getValue(0, "apellido")));
-			alumno.getCarrera();
-			alumno.getNombre();
-		
+	                "Estudiante",
+	                "SELECT * FROM Estudiante WHERE id = 4"); //tabla con los resultados del query
+			//assertThat(alumno.getApellido(), is (actualTable.getValue(0, "apellido")));
+			IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(
+	                 new File("C:\\Users\\geova\\OneDrive\\Escritorio\\Escuela\\Calidad_Santamaria\\calidad2022_Santamaria\\src\\resources\\insert2.xml")); //archivo xml con los datos esperados después de insertar
+			 ITable expectedTable = expectedDataSet.getTable("Estudiante");
+	        Assertion.assertEquals(actualTable, expectedTable);		 //comparamos las tablas
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			fail("Error in insert ttest: " + e.getMessage());
 		}
-		
 	}
+	
+	@Test
+	public void testFind() {
+		Estudiante alumno;
+		alumno = daoSQLite.findEstudiante(0);
+		
+		try {
+			ITable actualTable = getConnection().createQueryTable(
+	                "Estudiante",
+	                "SELECT * FROM Estudiante WHERE id = 1"); //tabla con los resultados del query
+			assertThat(alumno.getApellido(), is (actualTable.getValue(1, "apellido")));
+			assertThat(alumno.getCarrera(), is (actualTable.getValue(1, "carrera")));
+			assertThat(alumno.getNombre(), is (actualTable.getValue(1, "nombre")));
+		} catch (Exception e) {
+			// TODO: handle exception
+			fail("Error in insert ttest: " + e.getMessage());
+		}
+	}
+	
 }

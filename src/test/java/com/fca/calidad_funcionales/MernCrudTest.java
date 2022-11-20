@@ -3,6 +3,8 @@ package com.fca.calidad_funcionales;
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
+import org.junit.runner.OrderWith;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
@@ -14,6 +16,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.time.Duration;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class MernCrudTest {
@@ -49,8 +53,12 @@ public class MernCrudTest {
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")).click();
 	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Stop'])[1]/following::div[1]")).click();
 	    pause(3000);
-	    String mensaje = driver.findElement(By.xpath(" /html/body/div[2]/div/div[2]/form/div[4]/div/p")).getText();
-	    assertThat(mensaje,is("Successfully added!"));
+	    driver.findElement(By.xpath("//i")).click();
+	    /*
+	    //String mensaje = driver.findElement(By.xpath(" /html/body/div[2]/div/div[2]/form/div[4]/div/p")).getText();
+	    //assertThat(mensaje,is("Successfully added!"));
+	     */
+	    assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Elias test[\\s\\S]*$"));
 	   
 	 }
 	   

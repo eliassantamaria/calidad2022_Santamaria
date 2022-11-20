@@ -1,5 +1,6 @@
 package com.fca.calidad_funcionales;
 
+//Realización de exportaciones
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -15,6 +16,8 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.time.Duration;
 
+
+//Comienzo de la clase.
 public class GoogleTest {
 
 	private WebDriver driver;
@@ -22,6 +25,8 @@ public class GoogleTest {
 	  private boolean acceptNextAlert = true;
 	  private StringBuffer verificationErrors = new StringBuffer();
 	  JavascriptExecutor js;
+	  
+	  //Comienzo del before y agregamos en este apartado el webdriverManager.
 	  @Before
 	  public void setUp() throws Exception {
 	    //System.setProperty("webdriver.chrome.driver", "");
@@ -31,15 +36,20 @@ public class GoogleTest {
 	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 	    js = (JavascriptExecutor) driver;
 	  }
-
+	  //Finalización del before.
+	  
+	  
+	  //Comienzo de la prueba, en este caso será para validar el titulo de la pagina que es Yucatáni6
 	  @Test
-	  public void testUntitledTestCase() throws Exception {
+	  public void testTitulo() throws Exception {
 	    driver.get("https://www.google.com/search?q=yucatan+i6&rlz=1C1VDKB_esMX1027MX1027&oq=yuc&aqs=chrome.0.69i59j69i57j46i67i131i433j46i67j46i131i175i199i433i512j69i60l3.2768j0j7&sourceid=chrome&ie=UTF-8");
 	    driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div/div/div/a/h3")).click();
 	    driver.get("https://siies.yucatan.gob.mx/yucatani6/");
 	    assertEquals("Yucatáni6", driver.getTitle());
+	    System.out.println("La verificación del titulo es correcta.");
 	  }
-
+	  //Fin de el test e imprimimos un mensaje en caso de que todo vaya bien.
+	  
 	  @After
 	  public void tearDown() throws Exception {
 	    driver.quit();
@@ -80,13 +90,6 @@ public class GoogleTest {
 	    } finally {
 	      acceptNextAlert = true;
 	    }
-	  }
-	    private void pause(long mils) {
-		  	  try {
-		  		  Thread.sleep(mils);
-		  	  } catch(Exception e){
-		  		  e.printStackTrace();
-		  	  }
 	    
 	  }
 }

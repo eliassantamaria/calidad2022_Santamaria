@@ -53,8 +53,8 @@ public class FakeAlumnoDAOTest {
 	}//Terminar el test de agregar a la base de datos.
 
 	
+	//Realizamos el teste de buscar.
 	@Test
-	//Realizamos el teste de buscar
 	public void bucarTest() {
 		when(DAO.searchAlumno(any(String.class))).thenAnswer(new Answer<Alumno>() {
 			public Alumno answer(InvocationOnMock invocation) throws Throwable{
@@ -80,7 +80,7 @@ public class FakeAlumnoDAOTest {
 		String idEjecucion = baseDatos.get("1").getId();
 		int edadEjecucion = baseDatos.get("1").getEdad();
 		String emailEjecucion = baseDatos.get("1").getEmail();
-		
+	
 		assertThat(nomEjecucion,is(nomEsperado));
 		assertThat(idEjecucion,is(idEsperado));
 		assertThat(edadEjecucion,is(edadEsperado));
@@ -89,7 +89,7 @@ public class FakeAlumnoDAOTest {
 
 		System.out.println("Resultado searchAlumno: " + res);
 		
-	}//Terminamos el test de buscar
+	}//Terminamos el test de buscar e imprimos un mensaje.
 	
 	
 	//Realizamos la prueba de eliminar a la base de datos.
@@ -115,6 +115,7 @@ public class FakeAlumnoDAOTest {
 		assertThat(sizeAfter,is(sizeBefores));
 	
 	}//Termina la parte de eliminación en la base de datos
+	
 	
 	
 	//Realizamos la prueba para editar la varible email

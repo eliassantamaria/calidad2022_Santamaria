@@ -53,7 +53,7 @@ public class FakeAlumnoDAOTest {
 	}//Terminar el test de agregar a la base de datos.
 
 	
-	
+	@Test
 	//Realizamos el teste de buscar
 	public void bucarTest() {
 		when(DAO.searchAlumno(any(String.class))).thenAnswer(new Answer<Alumno>() {

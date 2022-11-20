@@ -81,4 +81,12 @@ public class GoogleTest {
 	      acceptNextAlert = true;
 	    }
 	  }
+	    private void pause(long mils) {
+		  	  try {
+		  		  Thread.sleep(mils);
+		  	  } catch(Exception e){
+		  		  e.printStackTrace();
+		  	  }
+	    
+	  }
 }

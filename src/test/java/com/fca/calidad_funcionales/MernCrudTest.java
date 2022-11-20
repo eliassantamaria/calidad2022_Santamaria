@@ -1,7 +1,6 @@
 package com.fca.calidad_funcionales;
 
-
-
+//Realizamos las importaciones.
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -17,6 +16,8 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.time.Duration;
 
+
+//Iniciación de la clase.
 public class MernCrudTest {
   private WebDriver driver;
   private String baseUrl;
@@ -34,12 +35,12 @@ public class MernCrudTest {
     js = (JavascriptExecutor) driver;
   }
 
- 
+ //Iniciación de el test crear.
   @Test
   public void CtestAgregar() throws Exception {
     driver.get("https://mern-crud.herokuapp.com/");
     driver.findElement(By.xpath("//div[@id='root']/div/div[2]/button")).click();
-    pause(2000);
+    pause(3000);
     driver.findElement(By.name("name")).click();
     driver.findElement(By.name("name")).clear();
     driver.findElement(By.name("name")).sendKeys("Eliastest1");
@@ -51,19 +52,23 @@ public class MernCrudTest {
     driver.findElement(By.name("age")).sendKeys("20");
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Gender'])[2]/following::div[1]")).click();
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Male'])[1]/following::div[2]")).click();
+    pause(3000);
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")).click();
+    pause(3000);
     driver.findElement(By.xpath("//i")).click();
-    pause(2000);
+    pause(3000);
     assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Eliastest1[\\s\\S]*$"));
     System.out.println("Se agrego al usuario Eliastest1");
   }
+  //Finaliza la prueba del testCreae e imprimos un mensaje de acuerdo a la prueba realizada.
   
- 
+  
+  //Iniciación de el test editar.
   @Test
   public void BtestEditar() throws Exception {
   driver.get("https://mern-crud.herokuapp.com/");
   driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr/td[5]/button")).click();
-  pause(2000);
+  pause(3000);
   driver.findElement(By.name("name")).click();
   driver.findElement(By.name("name")).clear();
   driver.findElement(By.name("name")).sendKeys("Eliastest2");
@@ -73,22 +78,32 @@ public class MernCrudTest {
   driver.findElement(By.name("age")).click();
   driver.findElement(By.name("age")).clear();
   driver.findElement(By.name("age")).sendKeys("21");
+  pause(3000);
   driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")).click();
+  pause(3000);
   driver.findElement(By.xpath("//i")).click();
-  pause(2000);
+  pause(3000);
   assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*elias@test2.com[\\s\\S]*$"));
   System.out.println("Se edito los datos del usuario Eliastest1, ahora es Eliastest2");
   }
+  //Finaliza la prueba de editar e imprimos un mensaje de lo realizado.
   
+  
+  //Iniciación de el test eliminar.
   @Test
   public void AtestEliminar() throws Exception {
     driver.get("https://mern-crud.herokuapp.com/");
+    pause(3000);
     driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr/td[5]/button[2]")).click();
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Eliastest2'])[2]/following::button[1]")).click();
+    pause(3000);
     driver.findElement(By.xpath("//div[@id='root']/div/div[2]")).click();
+    pause(3000);
     assertFalse(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Eliastest2[\\s\\S]*$"));
     System.out.println("Se eliminó al usuario Eliastest2");
   }
+  //Finaliza la prueba de eliminar e imprimos un mensaje de lo realizado.
+  
   
   /*
   @Test
@@ -145,6 +160,8 @@ public class MernCrudTest {
       acceptNextAlert = true;
     }
   }
+  
+  //Realizamos la acción de pausa lo que permitirá a la prueba no ir tan rapida.
   private void pause(long mils) {
 	  try {
 		  Thread.sleep(mils);

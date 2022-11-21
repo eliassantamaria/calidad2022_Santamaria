@@ -37,7 +37,7 @@ public class FakeAlumnoDAOTest {
 				Alumno arg = (Alumno) invocation.getArguments()[0];
 				//Agregar a la base de datos
 				baseDatos.put("1",arg);
-				System.out.println("Tamaño despues =" +baseDatos.size() + "\n");
+				System.out.println("Tamaño despues de agregar a un Alumno =" +baseDatos.size() + "\n");
 				return true;
 			}
 		}
@@ -55,7 +55,7 @@ public class FakeAlumnoDAOTest {
 	
 	//Realizamos el teste de buscar.
 	@Test
-	public void bucarTest() {
+	public void NbucarTest() {
 		when(DAO.searchAlumno(any(String.class))).thenAnswer(new Answer<Alumno>() {
 			public Alumno answer(InvocationOnMock invocation) throws Throwable{
 				String id = (String) invocation.getArguments()[0];
@@ -87,20 +87,42 @@ public class FakeAlumnoDAOTest {
 		assertThat(emailEjecucion,is(emailEsperado));
 
 
-		System.out.println("Resultado searchAlumno: " + res);
+		System.out.println("Resultado searchAlumno: " + res + "\n");
 		
 	}//Terminamos el test de buscar e imprimos un mensaje.
+	
+	//Realizamos la prueba para editar la varible email
+		@Test
+		public void updateEmailTest() {
+			when(DAO.updateEmail(any(Alumno.class))).thenAnswer(new Answer<Boolean>() {
+				public Boolean answer(InvocationOnMock invocation) throws Throwable{
+					Alumno arg = (Alumno) invocation.getArguments()[0];
+					baseDatos.put(arg.getId(),arg);
+					return true;
+				}
+			});
+			// Hacemos uso del metodo
+			Alumno a = new Alumno("nombre", "id", "email", 21);
+			baseDatos.put("1", a);
+			String nuevoCorreo = "nuevoCorreo";
+			a.setEmail(nuevoCorreo);
+			Boolean res = DAO.updateEmail(a);
+			String valorEsperado = nuevoCorreo;
+			String valorEjecucion = baseDatos.get("1").getEmail();
+			assertThat(valorEsperado,is(valorEjecucion));
+			System.out.println("Resultado de updateEmail: " + res+"\n");
+		}
 	
 	
 	//Realizamos la prueba de eliminar a la base de datos.
 	@Test
-	public void eliminarTest() {
+	public void AAAeliminarTest() {
 		when(DAO.deleteAlumno(any(Alumno.class))).then(new Answer<Boolean>() {
 			public Boolean answer (InvocationOnMock invocation) throws Throwable{
 				Alumno arg = (Alumno) invocation.getArguments()[0];
 				Alumno alumno = new Alumno ("nombre","id","email",14);
 				baseDatos.remove("1",alumno);
-				System.out.println("Tamaño despues ="+baseDatos.size()+ "\n");
+				System.out.println("Tamaño despues de eliminar un Alumno ="+baseDatos.size()+ "\n");
 				return false;
 			}
 		}
@@ -118,27 +140,7 @@ public class FakeAlumnoDAOTest {
 	
 	
 	
-	//Realizamos la prueba para editar la varible email
-	@Test
-	public void updateEmailTest() {
-		when(DAO.updateEmail(any(Alumno.class))).thenAnswer(new Answer<Boolean>() {
-			public Boolean answer(InvocationOnMock invocation) throws Throwable{
-				Alumno arg = (Alumno) invocation.getArguments()[0];
-				baseDatos.put(arg.getId(),arg);
-				return true;
-			}
-		});
-		// Hacemos uso del metodo
-		Alumno a = new Alumno("nombre", "id", "email", 21);
-		baseDatos.put("1", a);
-		String nuevoCorreo = "nuevoCorreo";
-		a.setEmail(nuevoCorreo);
-		Boolean res = DAO.updateEmail(a);
-		String valorEsperado = nuevoCorreo;
-		String valorEjecucion = baseDatos.get("1").getEmail();
-		assertThat(valorEsperado,is(valorEjecucion));
-		System.out.println("Resultado updateEmail: " + res+"\n");
-	}
+	
 	//Terminamos la prueba de editar el email.
 	
 	

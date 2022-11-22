@@ -91,7 +91,7 @@ public class MernCrudTest {
   
   //Iniciación de el test eliminar.
   @Test
-  public void AtestEliminar() throws Exception {
+  public void TestEliminar() throws Exception {
     driver.get("https://mern-crud.herokuapp.com/");
     pause(3000);
     driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr/td[5]/button[2]")).click();
@@ -117,6 +117,18 @@ public class MernCrudTest {
   }
   */
   
+  
+//Se realiza la prueba de buscar, no hay como tal un botón en la pagina de buscar pero trataremos de encontrar al alumno a través de su nombre.
+  @Test
+  public void AtestMBuscar() throws Exception {
+	 
+	  driver.get("https://mern-crud.herokuapp.com/");
+	  pause(3000);
+	  assertTrue(driver.findElement(By.xpath("//*[text()='Eliastest2']")).isDisplayed());
+	  System.out.println("Se encontro al usuario Eliastest2");
+	  
+  }
+  //Finaliza la prueba de buscar.
 
   
   @After

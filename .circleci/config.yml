@@ -23,12 +23,7 @@ jobs:
           name: Build
           command: mvn -B -DskipTests clean package
       # Then run your tests!
-      
-      #Se realiza el test de Google.
-      - run:
-          name: TestFuncionalGoogle
-          command: mvn test -Dtest="GoogleTest"
-          
+                
       #Se realiza el test de la calculadora.    
       - run:
           name: TestCalculadora

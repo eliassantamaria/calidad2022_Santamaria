@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class DAOEstudianteSQLlite implements IDAOEstudiante{
 	
 	private static final String DRIVER_NAME = "org.sqlite.JDBC";
-	private static final String DB_URL = "jdbc:sqlite:C:\\Users\\geova\\Desktop\\Santamaria_Calidad2022\\santamaria_Calidad\\calidad2022_Santamaria\\src\\resources\\Alumnos.db";
+	private static final String DB_URL = "jdbc:sqlite:.\\src\\resources\\Alumnos.db";
 	private static final String ID= "";
 	private static final String PASS= "";
 	

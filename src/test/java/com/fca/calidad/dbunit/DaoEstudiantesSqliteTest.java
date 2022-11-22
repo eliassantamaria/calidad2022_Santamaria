@@ -50,7 +50,7 @@ public class DaoEstudiantesSqliteTest extends TestCase{
 		Connection jdbcConnection;
 		
 		jdbcConnection = DriverManager.getConnection
-				("jdbc:sqlite:C:\\Users\\geova\\Desktop\\Santamaria_Calidad2022\\santamaria_Calidad\\calidad2022_Santamaria\\src\\resources\\Alumnos.db");
+				("jdbc:sqlite:.\\src\\resources\\Alumnos.db");
 		
 		connection = new DatabaseConnection(jdbcConnection);
 		
@@ -153,7 +153,7 @@ public class DaoEstudiantesSqliteTest extends TestCase{
 		@Test
 		public void testCrearCompararTabla() {
 			//<Estudiante id="3" nombre="nombre1" apellido="apellido1" email="email" carrera = "carrera"/>
-			Estudiante alumno = new Estudiante ("nombre1","apellido1","email" ,"carrera");
+			Estudiante alumno = new Estudiante ("nombreElias","apellidoElias","Elias@email.com" ,"carreraLATI");
 			
 			int id = daoSQLite.createEstudiante(alumno);
 			alumno.setId(id);
@@ -228,7 +228,7 @@ public class DaoEstudiantesSqliteTest extends TestCase{
 			DAOEstudianteSQLlite daoSQLite = new DAOEstudianteSQLlite ();
 			
 			Estudiante Estudiante2 = daoSQLite.findEstudiante(1);
-			Estudiante2.setEmail("nuevo@mail.com");
+			Estudiante2.setEmail("editacion@email.com");
 			daoSQLite.updateEmailEstudiante(Estudiante2);
 			
 			//verify
@@ -238,7 +238,7 @@ public class DaoEstudiantesSqliteTest extends TestCase{
 				ITable actualTable = databaseDataSet.getTable("Estudiante");
 				
 				//Leer el archivo con el resultado esperado
-				IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/resources/update_result.xml"));
+				IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("./src/resources/initUpdate.xml"));
 				ITable expectedTable = expectedDataSet.getTable("Estudiante");
 				
 				Assertion.assertEquals(expectedTable, actualTable);

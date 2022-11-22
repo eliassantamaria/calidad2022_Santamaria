@@ -3,5 +3,4 @@
 	<Estudiante id="1" nombre="alumno001" apellido="alumno001apellido" email="editacion@email.com" carrera="carrera1"/>
 	<Estudiante id="2" nombre="alumno002" apellido="alumno002apellido" email="holaalumno002@hola" carrera="carrera2"/>
 	<Estudiante id="3" nombre="alumno003" apellido="alumno003apellido" email="holaalummno003@hola" carrera="carrera3"/>
-	<Estudiante id="4" nombre="nombreElias" apellido="apellidoElias" email="Elias@email.com" carrera="carreraLATI"/>
 </dataset>

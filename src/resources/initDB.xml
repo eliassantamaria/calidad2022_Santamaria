@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<Estudiante id="1" nombre="alumno001" apellido="alumno001apellido" email="holaalumno001@hola" carrera="carrera1"/>
-	<Estudiante id="2" nombre="alumno002" apellido="alumno002apellido" email="holaalumno002@hola" carrera="carrera2"/>
-	<Estudiante id="3" nombre="alumno003" apellido="alumno003apellido" email="holaalummno003@hola" carrera="carrera3"/>
+	<Estudiante id="0" nombre="alumno001" apellido="alumnoap001" email="email001" carrera="carrera001"/>
+	<Estudiante id="1" nombre="alumno002" apellido="alumnoap002" email="email002" carrera="carrera002"/>
+	<Estudiante id="2" nombre="alumno003" apellido="alumnoap003" email="email003" carrera="carrera003"/>	
 </dataset>

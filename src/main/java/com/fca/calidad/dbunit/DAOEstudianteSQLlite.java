@@ -103,7 +103,7 @@ public class DAOEstudianteSQLlite implements IDAOEstudiante{
 				result = true;
 			}
 			System.out.println("\n");
-			System.out.println("Estudiante eliminado con exito");
+			System.out.println("¡Estudiante eliminado con exito!:D");
 			System.out.println(">> Return: " + result + "\n");
 			// Close connection with the database
 			conn.close();
@@ -116,7 +116,8 @@ public class DAOEstudianteSQLlite implements IDAOEstudiante{
 		return result;
 		
 	}
-
+	
+	
 	@Override
 	public boolean updateEmailEstudiante(Estudiante e) {
 		
@@ -139,7 +140,46 @@ public class DAOEstudianteSQLlite implements IDAOEstudiante{
 				result = true;
 			}
 			System.out.println("\n");
-			System.out.println("Correo de alumno con ID: " + aux + " actualizado");
+			System.out.println("Email de alumno con ID: " + aux + " actualizado!");
+			System.out.println(">> Return: " + result + "\n");
+			// Close connection with the database
+			conn.close();
+			preparedStatement.close();
+
+		} catch (Exception e2) {
+			System.out.println(e2);
+		}
+		// Return statement
+		return result;
+		
+		
+	}
+	
+	
+	//Agregamos un metodo más de manera que, ahora también podamos realizar la actualización del nombre.
+	@Override
+	public boolean updateNombreEstudiante(Estudiante e) {
+		
+		Connection conn = getConnection();
+		boolean result = false;
+
+		try {
+			// Declare statement query to run
+			PreparedStatement preparedStatement;
+			preparedStatement = conn.prepareStatement("UPDATE Estudiante SET nombre = ? WHERE id = ?");
+			// Set the values to match in the ? on query
+			preparedStatement.setString(1, e.getNombre());
+			
+			String aux = Integer.toString(e.getId());
+			
+			preparedStatement.setString(2, aux);
+
+			// Return the result of connection and statement
+			if (preparedStatement.executeUpdate() >= 1) {
+				result = true;
+			}
+			System.out.println("\n");
+			System.out.println("Nombre de alumno con ID: " + aux + " actualizado");
 			System.out.println(">> Return: " + result + "\n");
 			// Close connection with the database
 			conn.close();

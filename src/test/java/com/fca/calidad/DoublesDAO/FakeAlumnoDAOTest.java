@@ -115,28 +115,41 @@ public class FakeAlumnoDAOTest {
 	
 	
 	//Realizamos la prueba de eliminar a la base de datos.
-	@Test
-	public void AAAeliminarTest() {
-		when(DAO.deleteAlumno(any(Alumno.class))).then(new Answer<Boolean>() {
-			public Boolean answer (InvocationOnMock invocation) throws Throwable{
-				Alumno arg = (Alumno) invocation.getArguments()[0];
-				Alumno alumno = new Alumno ("nombre","id","email",14);
-				baseDatos.remove("1",alumno);
-				System.out.println("Tamaño despues de eliminar un Alumno ="+baseDatos.size()+ "\n");
-				return false;
-			}
-		}
+		 @Test
+		    public void AAAeliminarAlumnoTest() {
+		  	
+				when(DAO.deleteAlumno(any(Alumno.class))).thenAnswer(new Answer<Boolean>() {
+					
+					public Boolean answer(InvocationOnMock invocation) throws Throwable{
+						//Seteamos
+						Alumno arg = (Alumno) invocation.getArguments()[0];
+						
+						//Removemos del hashMap con metodo remove
+						baseDatos.remove(arg.getId());
+						
+						return true;
+					}
 				
-		);
-		
-		Alumno a = new Alumno ("nombre","id","email",14);
-		int sizeBefores = baseDatos.size();
-		Boolean res = DAO.deleteAlumno(a);
-		int sizeAfter = baseDatos.size();
-		
-		assertThat(sizeAfter,is(sizeBefores));
-	
-	}//Termina la parte de eliminación en la base de datos
+				});
+				
+				Alumno alumno1 = new Alumno("nombre", "1", "email", 21);
+				
+				//Ingresamos a alumno 
+				baseDatos.put("1", alumno1);
+				
+				int sizeS = baseDatos.size();
+				
+				//Borramos a alumno1 y almacenamos el valor en res 
+				Boolean res = DAO.deleteAlumno(alumno1);
+				
+				int sizeAfterDelete = baseDatos.size();
+				
+				//Verificamos
+				assertThat(sizeAfterDelete, is(sizeS - 1));
+				System.out.println("TestEliminar : " + res);
+				
+			
+			}//Termina la parte de eliminación en la base de datos
 	
 	
 	

@@ -15,9 +15,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.time.Duration;
-
+import org.junit.runners.*;
 
 //Iniciación de la clase.
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MernCrudTest {
   private WebDriver driver;
   private String baseUrl;
@@ -37,7 +38,7 @@ public class MernCrudTest {
 
  //Iniciación de el test crear.
   @Test
-  public void CtestAgregar() throws Exception {
+  public void AtestAgregar() throws Exception {
     driver.get("https://mern-crud.herokuapp.com/");
     driver.findElement(By.xpath("//div[@id='root']/div/div[2]/button")).click();
     pause(3000);
@@ -91,7 +92,7 @@ public class MernCrudTest {
   
   //Iniciación de el test eliminar.
   @Test
-  public void TestEliminar() throws Exception {
+  public void DtestEliminar() throws Exception {
     driver.get("https://mern-crud.herokuapp.com/");
     pause(3000);
     driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr/td[5]/button[2]")).click();
@@ -120,7 +121,7 @@ public class MernCrudTest {
   
 //Se realiza la prueba de buscar, no hay como tal un botón en la pagina de buscar pero trataremos de encontrar al alumno a través de su nombre.
   @Test
-  public void AtestMBuscar() throws Exception {
+  public void CtestMBuscar() throws Exception {
 	 
 	  driver.get("https://mern-crud.herokuapp.com/");
 	  pause(3000);

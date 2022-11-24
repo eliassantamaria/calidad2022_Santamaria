@@ -24,11 +24,6 @@ jobs:
           command: mvn -B -DskipTests clean package
       # Then run your tests!
       
-      #Se realiza el test automatizado de google.
-      - run:
-          name: TestGoogle
-          command: mvn test -Dtest="GoogleTest"
-      
       #Se realiza el test de la calculadora.    
       - run:
           name: TestCalculadora

@@ -27,27 +27,7 @@ jobs:
       #Se realiza el test automatizado de google.
       - run:
           name: TestGoogle
-          command: mvn test -Dtest="GoogleTest"
-      
-      #Se realiza el test de la calculadora.    
-      - run:
-          name: TestCalculadora
-          command: mvn test -Dtest="Calculadora"
-          
-      #Se realiza el test de las pruebas parametrizadas.    
-      - run: 
-          name: TestParametrizada
-          command: mvn test -Dtest="AritmeticaParametrizadaTest"
-          
-       #Se realiza el test del CRUD de Mockito. 
-      - run:
-          name: TestCrudMockito
-          command: mvn test -Dtest="FakeAlumnoDAOTest"
-          
-       #Se realiza el test del CRUD de Mern.    
-      - run:
-          name: TestCrudMern
-          command: mvn test -Dtest="MernCrudTest"
+          command: mvn test -Dtest="GoogleTest.java"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

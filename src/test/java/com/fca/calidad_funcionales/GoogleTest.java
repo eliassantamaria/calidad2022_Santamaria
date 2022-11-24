@@ -43,11 +43,12 @@ public class GoogleTest {
 	  @Test
 	  public void testTitulo() throws Exception {
 	    driver.get("https://www.google.com/search?q=yucatan+i6&rlz=1C1VDKB_esMX1027MX1027&oq=yuc&aqs=chrome.0.69i59j69i57j46i67i131i433j46i67j46i131i175i199i433i512j69i60l3.2768j0j7&sourceid=chrome&ie=UTF-8");
-	    driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div/div/div/a/h3")).click();
-	    driver.get("https://siies.yucatan.gob.mx/yucatani6/");
+	    //driver.findElement(By.xpath("//div[@id='rso']/div/div/div/div/div/div/div/div/a/h3")).click();
+	    //driver.get("https://siies.yucatan.gob.mx/yucatani6/");
 	    //assertEquals("Yucatáni6", driver.getTitle());
-	    driver.findElement(By.xpath("//*[text()='Yucatáni6']"));
+	    driver.findElement(By.xpath("//*[text()='Yucatáni6 - SIIES']")).click();
 	    System.out.println("La verificación del titulo es correcta.");
+	    assertEquals("Yucatáni6", driver.getTitle());
 	  }
 	  //Fin de el test e imprimimos un mensaje en caso de que todo vaya bien.
 	  

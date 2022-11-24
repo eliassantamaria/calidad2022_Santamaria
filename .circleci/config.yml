@@ -27,7 +27,7 @@ jobs:
       #Se realiza el test automatizado de google.
       - run:
           name: TestGoogle
-          command: mvn test -Dtest="GoogleTest"
+          command: mvn test -Dtest="GoogleTest.java"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
